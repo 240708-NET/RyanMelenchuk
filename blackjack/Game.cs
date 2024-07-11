@@ -12,19 +12,36 @@ public class Game
 
     public void playRound()
     {
-        // Shuffles the deck
-        //d.Shuffle();
         // Loops (keeps dealing more hands of Blackjack) until the player decides to stop
         while(play == "y"){
-            
 
+            d.Deal();
 
+            Console.WriteLine(" Hit or Stand [H/S]: ");
+            string hos = Console.ReadLine().ToLower();
+            if(hos != "h" && hos != "s")
+            {
+                while(hos != "h" && hos != "s")
+                {
+                    Console.WriteLine("Sorry, that is not a valid input. Please input [H/S]");
+                    hos = Console.ReadLine().ToLower();
+                }
+            }
+            if(hos == "h")
+            {
+                // check if the player busted
 
+                // check if the player hit blackjack
 
+                // otherwise, ask the player again if they want to hit or stand
+                d.Hit(d.playerHand);
+            }
+            else if(hos == "s")
+            {
+                Console.WriteLine("");
+            }
 
-
-
-
+            // Asks the user if they would like to play another round (loops)
             Console.WriteLine("Would you like to go again? [Y/N]: ");
             play = Console.ReadLine().ToLower();
             // Input validation
@@ -34,8 +51,4 @@ public class Game
             }
         }
     }
-
-
-
-
 }
