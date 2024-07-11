@@ -25,6 +25,7 @@ public class Deck
     {
         deckList.Clear();
         deckList.AddRange(fullDeck);
+        Console.WriteLine("Deck Shuffled");
     }
 
     public string DealCard(string hand, int numCards)
@@ -42,10 +43,9 @@ public class Deck
     public void Deal()
     {
         playerHand.Clear();
-        //dealerHand = "";
 
         // Shuffles the deck if there are no cards left
-        if(deckList.Count <= 0)
+        if(deckList.Count < 2)
             Shuffle();
 
         // deal cards to player
@@ -56,24 +56,59 @@ public class Deck
         playerHand.Add(deckList[deckIndex]);
         deckList.RemoveAt(deckIndex);
         Console.Write($"You have been dealt a {playerHand[0]} and {playerHand[1]}.");
-        /*
-        playerHand += DealCard(playerHand, 2);
-        Console.WriteLine($"You have been dealt {playerHand}");
-        //Console.WriteLine("DeckList Count: " + deckList.Count());
-        dealerHand += DealCard(dealerHand, 2);
-        Console.WriteLine($"The Dealer has {dealerHand}");
-        */
+    }
 
+    public void DealerDeal()
+    {
+        dealerHand.Clear();
 
-        // check blackjack conditions
-        // player hits blackjack (21)
+        if(deckList.Count < 2)
+            Shuffle();
 
-        // dealer hits blackjack (21)
+        deckIndex = rand.Next(deckList.Count);
+        dealerHand.Add(deckList[deckIndex]);
+        deckList.RemoveAt(deckIndex);
+        deckIndex = rand.Next(deckList.Count);
+        dealerHand.Add(deckList[deckIndex]);
+        deckList.RemoveAt(deckIndex);
+        Console.Write($" The dealer has a {dealerHand[1]}.");
+    }
 
+    // Returns the value of a hand
+    public int Count(List<string> hand)
+    {
+        int count = 0;
+        // iterate through the cards in a hand
+        for(int i = 0; i < hand.Count(); i++)
+        {
+            if(hand[i] == "A" && count <= 10)
+                count += 11;
+            else if(hand[i] == "A" && count > 10)
+                count += 1;
+            else if(hand[i] == "2")
+                count += 2;
+            else if(hand[i] == "3")
+                count += 3;
+            else if(hand[i] == "4")
+                count += 4;
+            else if(hand[i] == "5")
+                count += 5;
+            else if(hand[i] == "6")
+                count += 6;
+            else if(hand[i] == "7")
+                count += 7;
+            else if(hand[i] == "8")
+                count += 8;
+            else if(hand[i] == "9")
+                count += 9;
+            else if(hand[i] == "10" || hand[i] == "J" || hand[i] == "Q" || hand[i] == "K")
+                count += 10;
+        }
+        return count;
     }
 
     // 'Hits' the player w/ a card from the dealer
-    public void Hit(List<string> hand)
+    public void PlayerHit(List<string> hand)
     {
         if(deckList.Count <= 0)
             Shuffle();
@@ -83,9 +118,13 @@ public class Deck
         Console.WriteLine($"You have been dealt a {hand[hand.Count()-1]}");
     }
 
-    // The player chooses to 'Stand' so the dealer deals to himself. Player either busts or wins chips
-    public void Stand()
+    public void DealerHit(List<string> hand)
     {
-        
+        if(deckList.Count <= 0)
+            Shuffle();
+        deckIndex = rand.Next(deckList.Count);
+        hand.Add(deckList[deckIndex]);
+        deckList.RemoveAt(deckIndex);
+        Console.WriteLine($"The dealer has been dealt a {hand[hand.Count()-1]}");
     }
 }
