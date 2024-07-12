@@ -1,5 +1,5 @@
 // The deck will responsively decrease as cards are dealt
-// The deck will huffle once it is sufficiently depleted
+// The deck will shuffle once it is sufficiently depleted
 
 
 public class Deck
