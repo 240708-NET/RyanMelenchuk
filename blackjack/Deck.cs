@@ -1,5 +1,6 @@
-//using System;
-//using System.Collections.Generic;
+// The deck will responsively decrease as cards are dealt
+// The deck will huffle once it is sufficiently depleted
+
 
 public class Deck
 {

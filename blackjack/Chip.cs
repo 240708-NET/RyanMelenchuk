@@ -1,3 +1,7 @@
+// The user will be able to bet chips
+// The user will be able to "cash out" their chips for cash, quitting the game
+// The user will be able to "cash in" if they run out of chips to continue playing
+
 public class Chip
 {
     // Starting chip count for the player

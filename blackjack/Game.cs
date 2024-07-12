@@ -1,3 +1,11 @@
+// The user will be able to play through at least one round of blackjack
+// The user will be have the option to play another round if they so choose
+// The user will be able to exit the game if they no longer wish to continue playing
+// The user will be dealt and presented cards according to the rules of blackjack
+// The user will be able to 'Hit' or 'Stand'
+// The user will win if they hit blackjack, score >= the dealer, or the dealer busts
+// The user will lose if they score lower than the dealer or bust
+
 public class Game
 {
     // Declare Game variables
