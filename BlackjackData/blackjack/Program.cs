@@ -7,7 +7,7 @@
         Game g = new Game();
         Chip c = new Chip();
         
-        c.writeChipCount();
+        c.WriteChipCount();
 
         Console.WriteLine("Would you like to play a round? [Y/N]: ");
         String round = Console.ReadLine().ToLower();

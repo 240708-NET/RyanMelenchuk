@@ -31,6 +31,8 @@ public class Game
             bust = false;
             blackjack = false;
             hos = "";
+            c.WriteChipCount();
+            c.BetChips();
             d.Deal();
             d.DealerDeal();
             dealerCount = d.Count(d.dealerHand);
@@ -40,13 +42,15 @@ public class Game
             // check if the player hit blackjack
             if(playerCount == 21)
             {
-                Console.WriteLine("Blackjack! You won _ chips.");
+                c.UpdateChips(true);
+                Console.WriteLine($"\nBlackjack! You won {c.betChips} chips.");
                 blackjack = true;
             }
             // check if the dealer hit blackjack
             else if(dealerCount == 21)
             {
-                Console.WriteLine("Dealer Blackjack! Better luck next time...");
+                c.UpdateChips(false,false);
+                Console.WriteLine("\nDealer Blackjack! Better luck next time...");
             }
             else
             {
@@ -71,13 +75,15 @@ public class Game
                         // check if the player busted
                         if(playerCount > 21)
                         {
-                            Console.WriteLine("Busted!");
+                            c.UpdateChips(false,false);
+                            Console.WriteLine("\nBusted!");
                             bust = true;
                         }
                         else if(playerCount == 21)
                         {
-                            Console.WriteLine("Blackjack! You won _ chips.");
                             blackjack = true;
+                            c.UpdateChips(blackjack);
+                            Console.WriteLine($"\nBlackjack! You won {c.betChips} chips.");
                             break;
                         }                      
                     }
@@ -94,22 +100,26 @@ public class Game
                         //Console.Write(". Current Dealer Count: " + dealerCount);
                         if(dealerCount > 21)
                         {
-                            Console.WriteLine("Dealer Busted! You won _ chips.");
+                            c.UpdateChips(false,true);
+                            Console.WriteLine($"\nDealer Busted! You won {c.betChips} chips.");
                             dealerBust = true;
                         }
                         else if(dealerCount == 21)
                         {
-                            Console.WriteLine("Dealer Blackjack! Better luck next time...");
+                            c.UpdateChips(false,false);
+                            Console.WriteLine("\nDealer Blackjack! Better luck next time...");
                             break;
                         }
                         else if(dealerCount > playerCount)
                         {
-                            Console.WriteLine($"You have {playerCount} while the Dealer has {dealerCount}. Close!");
+                            c.UpdateChips(false,false);
+                            Console.WriteLine($"\nYou have {playerCount} while the Dealer has {dealerCount}. Close!");
                             break;
                         }
                         else if(dealerCount <= playerCount && dealerCount >= 17)
                         {
-                            Console.WriteLine($"You have {playerCount} while the Dealer has {dealerCount}. You won _ chips.");
+                            c.UpdateChips(false,true);
+                            Console.WriteLine($"\nYou have {playerCount} while the Dealer has {dealerCount}. You won {c.betChips} chips.");
                             break;
                         }
                         else
@@ -120,7 +130,7 @@ public class Game
                 }
             }
             // Asks the user if they would like to play another round (loops)
-            Console.WriteLine("Would you like to go again? [Y/N]: ");
+            Console.WriteLine("\nWould you like to go again? [Y/N]: ");
             play = Console.ReadLine().ToLower();
             // Input validation
             while(play != "y" && play != "n"){
