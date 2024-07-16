@@ -6,6 +6,9 @@
 // The user will win if they hit blackjack, score >= the dealer, or the dealer busts
 // The user will lose if they score lower than the dealer or bust
 
+using BlackjackData.Repo;
+using BlackjackData.Models;
+
 public class Game
 {
     // Declare Game variables
