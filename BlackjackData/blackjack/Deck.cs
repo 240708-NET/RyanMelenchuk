@@ -1,6 +1,7 @@
 // The deck will responsively decrease as cards are dealt
 // The deck will shuffle once it is sufficiently depleted
 
+namespace Blackjack;
 
 public class Deck
 {

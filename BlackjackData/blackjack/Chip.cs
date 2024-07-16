@@ -3,6 +3,12 @@
 // The user will be able to "cash out" their chips for cash, quitting the game
 // The user will be able to "cash in" if they run out of chips to continue playing
 
+// TODO - implement chip stats saving to Player.txt file path (using Serialization methods)
+
+namespace Blackjack;
+
+using BlackjackData.Models;
+
 public class Chip
 {
     // Starting chip count for the player

@@ -1,11 +1,13 @@
-﻿class Program
+﻿namespace Blackjack;
+
+class Program
 {
     static void Main(string[] args)
     {
         string round;
 
         Console.WriteLine("Welcome to Blackjack!");
-        // Instantiate Game class
+        // Instantiate classes
         Game g = new Game();
         Chip c = new Chip();
         
