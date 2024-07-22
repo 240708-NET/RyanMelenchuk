@@ -1,4 +1,8 @@
-﻿namespace Blackjack;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using BlackjackData.Models;
+
+namespace Blackjack;
 
 class Program
 {
@@ -10,7 +14,20 @@ class Program
         // Instantiate classes
         Game g = new Game();
         Chip c = new Chip();
+        Player p1 = new Player(1, 50);
         
+        // connect to db
+        using(var context = new DataContext())
+        {
+            context.Add(p1);
+            context.SaveChanges();
+        }
+        /*
+        string connectionString = "./connectionstring";
+        DbContextOptions<DataContext> ContextOptions = new DbContextOptionsBuilder<DataContext>().UseSqlServer(connectionString).Options;
+        DataContext Context = new DataContext(ContextOptions);
+        */
+
         c.WriteChipCount();
 
         Console.WriteLine("Would you like to play a round? [Y/N]: ");

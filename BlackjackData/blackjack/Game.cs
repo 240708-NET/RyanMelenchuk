@@ -24,9 +24,8 @@ public class Game
     // Instantiate Deck and Chip classes
     Deck d = new Deck();
     Chip c = new Chip();
-    Player p1 = new Player();
-    // TODO - implement win/loss updating to Player.txt file path
-
+    //Player p1 = new Player();
+    
     public Game(){}
 
     public void playRound()
