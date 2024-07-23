@@ -4,7 +4,7 @@ namespace BlackjackData.Models;
 
 public class DataContext : DbContext
 {
-    public DbSet<Player> Player => Set<Player>();
+    public DbSet<Player> Players => Set<Player>();
 
     string ConnectionString = File.ReadAllText("C:/Revature/RyanMelenchuk/BlackjackData/BlackjackData.Models/connectionstring");
 

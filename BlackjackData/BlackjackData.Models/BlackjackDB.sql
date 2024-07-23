@@ -17,11 +17,11 @@ GO
 
 -- Drop the Player table
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Player]') AND type in (N'U'))
-DROP TABLE [dbo].[Player]
+DROP TABLE [dbo].[Players]
 GO
 
 -- Create the Player table
-CREATE TABLE Player
+CREATE TABLE Players
 (
     ID INTEGER,
     Wins INT,
@@ -32,6 +32,9 @@ CREATE TABLE Player
     ChipsLost INT
 )
 
--- Query Player table
+-- Query Players table
 SELECT *
-FROM [Blackjack].[dbo].[Player];
+FROM [Blackjack].[dbo].[Players];
+
+-- Delete all rows from the Players table
+DELETE FROM [Blackjack].[dbo].[Players];

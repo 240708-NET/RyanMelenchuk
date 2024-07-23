@@ -9,9 +9,10 @@ public class Player
     public int chips {get;set;}
     public int chipsWon {get;set;} = 0;
     public int chipsLost {get;set;} = 0;
-
+    /*
     public Player(int id, int startingChips){
         ID = id;
         chips = startingChips;
     }
+    */
 }

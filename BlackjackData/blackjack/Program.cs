@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using BlackjackData.Models;
 
@@ -14,7 +16,9 @@ class Program
         // Instantiate classes
         Game g = new Game();
         Chip c = new Chip();
-        Player p1 = new Player(1, 50);
+        // TODO - create IF statement where if the player already exists,
+        //        then just create a new p1 instance of the player from the Blackjack DB
+        Player p1 = new Player{ID = 1, chips = 50};
         
         // connect to db
         using(var context = new DataContext())
