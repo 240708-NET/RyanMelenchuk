@@ -6,10 +6,10 @@
 // The user will win if they hit blackjack, score >= the dealer, or the dealer busts
 // The user will lose if they score lower than the dealer or bust
 
-namespace Blackjack;
-
 using BlackjackData.Repo;
 using BlackjackData.Models;
+
+namespace Blackjack;
 
 public class Game
 {
@@ -25,7 +25,7 @@ public class Game
     Deck d = new Deck();
     Chip c = new Chip();
     //Player p1 = new Player();
-    
+
     public Game(){}
 
     public void playRound()

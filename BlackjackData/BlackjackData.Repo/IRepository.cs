@@ -1,9 +1,14 @@
-﻿namespace BlackjackData.Repo;
+﻿using BlackjackData.Models;
+
+namespace BlackjackData.Repo;
 
 public interface IRepository
 {
-    public void StreamReaderReadLine(string path);
-    public void StreamReaderWriteLine(string path);
-    public void SaveChips(int chips);
-    public void SaveWLRatio();
+    void CreatePlayer(Player newPlayer);
+    Player GetPlayerByID(int ID);
+    int GetChipsByID(int ID);
+    List<Player> LoadAllPlayers();
+    void UpdatePlayer(Player player);
+    void DeletePlayerByID(int ID);
+
 }

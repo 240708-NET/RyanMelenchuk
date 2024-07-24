@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using BlackjackData.Models;
+using BlackjackData.Repo;
 
 namespace Blackjack;
 
@@ -16,21 +16,21 @@ class Program
         // Instantiate classes
         Game g = new Game();
         Chip c = new Chip();
-        // TODO - create IF statement where if the player already exists,
-        //        then just create a new p1 instance of the player from the Blackjack DB
-        Player p1 = new Player{ID = 1, chips = 50};
-        
+
         // connect to db
-        using(var context = new DataContext())
+        IRepository file = new EFCore();
+
+        // create list to track players
+        List<Player> playerList = new List<Player>();
+        playerList = file.LoadAllPlayers();
+        // load all existing ducks into the playerList ELSE IF there are no existing players - create one
+        if(playerList.Count() == 0) // no existing players, create new player
         {
-            context.Add(p1);
-            context.SaveChanges();
+            Player p1 = new Player(50);
+            playerList.Add(p1);
+            Console.WriteLine("New Player Created");
+            file.CreatePlayer(p1); // add player to DB
         }
-        /*
-        string connectionString = "./connectionstring";
-        DbContextOptions<DataContext> ContextOptions = new DbContextOptionsBuilder<DataContext>().UseSqlServer(connectionString).Options;
-        DataContext Context = new DataContext(ContextOptions);
-        */
 
         c.WriteChipCount();
 

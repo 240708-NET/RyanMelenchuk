@@ -3,23 +3,22 @@
 // The user will be able to "cash out" their chips for cash, quitting the game
 // The user will be able to "cash in" if they run out of chips to continue playing
 
-// TODO - implement chip stats saving to Player.txt file path (using Serialization methods)
+using BlackjackData.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blackjack;
 
-using BlackjackData.Models;
-
 public class Chip
 {
+    Player p = new Player();
     // Starting chip count for the player
-    static int startChips = 50;
-    int cash = 1000;
-    public int playerChips {get;set;} = startChips;
-    public int betChips;
+    public int betChips = 0;
+
+    public Chip (){}
 
     public void WriteChipCount()
     {
-        Console.WriteLine($"You have {playerChips} chips.");
+        Console.WriteLine($"You have {p.chips} chips.");
     }
 
     public void BetChips()
@@ -37,16 +36,16 @@ public class Chip
     public void UpdateChips(bool blackjack, bool won)
     {
         if(blackjack)
-            playerChips += (int)Math.Round(betChips*1.5);
+            p.chips += (int)Math.Round(betChips*1.5);
         else if(won)
-            playerChips += betChips;
+            p.chips += betChips;
         else
-            playerChips -= betChips;
+            p.chips -= betChips;
     }
     public void UpdateChips(bool blackjack)
     {
         if(blackjack)
-            playerChips += (int)Math.Round(betChips*1.5);
+            p.chips += (int)Math.Round(betChips*1.5);
     }
     /*
     // Cashes out the player and shows them how much they have won (or lost). Quits the game

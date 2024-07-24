@@ -15,15 +15,10 @@ GO
 USE Blackjack;
 GO
 
--- Drop the Player table
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Player]') AND type in (N'U'))
-DROP TABLE [dbo].[Players]
-GO
-
 -- Create the Player table
 CREATE TABLE Players
 (
-    ID INTEGER,
+    ID INT NOT NULL PRIMARY KEY,
     Wins INT,
     Losses INT,
     Blackjacks INT,
