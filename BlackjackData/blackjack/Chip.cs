@@ -16,9 +16,9 @@ public class Chip
 
     public Chip (){}
 
-    public void WriteChipCount()
+    public void WriteChipCount(Player player)
     {
-        int numChips = file.GetChipsByID(1);
+        int numChips = file.GetChips(player);
         Console.WriteLine($"You have {numChips} chips.");
     }
 
@@ -37,17 +37,35 @@ public class Chip
     public void UpdateChips(Player player, bool blackjack, bool won)
     {
         if(blackjack)
+        {
             player.chips += (int)Math.Round(betChips*1.5);
+            player.chipsWon += (int)Math.Round(betChips*1.5);
+            player.wins++;
+            player.blackjacks++;
+        }
         else if(won)
+        {
             player.chips += betChips;
+            player.chipsWon += betChips;
+            player.wins++;
+        }
         else
+        {
             player.chips -= betChips;
+            player.chipsLost += betChips;
+            player.losses++;
+        }
         file.UpdatePlayer(player);
     }
     public void UpdateChips(Player player, bool blackjack)
     {
         if(blackjack)
+        {
             player.chips += (int)Math.Round(betChips*1.5);
+            player.chipsWon += (int)Math.Round(betChips*1.5);
+            player.wins++;
+            player.blackjacks++;
+        }
         file.UpdatePlayer(player);
     }
     /*

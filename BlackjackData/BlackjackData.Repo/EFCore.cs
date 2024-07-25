@@ -36,9 +36,9 @@ public class EFCore : IRepository
         return context.Players.ToList();
     }
 
-    public int GetChipsByID(int ID)
+    public int GetChips(Player player)
     {
-        var p = context.Players.Find(ID);
+        var p = context.Players.Find(player.ID);
         return (int) p.chips;
     }
 

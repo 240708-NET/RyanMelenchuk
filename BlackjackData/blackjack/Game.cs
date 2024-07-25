@@ -37,7 +37,7 @@ public class Game
             bust = false;
             blackjack = false;
             hos = "";
-            c.WriteChipCount();
+            c.WriteChipCount(player);
             c.BetChips();
             d.Deal();
             d.DealerDeal();
