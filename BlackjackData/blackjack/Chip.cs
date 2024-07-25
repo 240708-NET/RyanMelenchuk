@@ -4,13 +4,13 @@
 // The user will be able to "cash in" if they run out of chips to continue playing
 
 using BlackjackData.Models;
-using Microsoft.EntityFrameworkCore;
+using BlackjackData.Repo;
 
 namespace Blackjack;
 
 public class Chip
 {
-    Player p = new Player();
+    IRepository file = new EFCore();
     // Starting chip count for the player
     public int betChips = 0;
 
@@ -18,7 +18,8 @@ public class Chip
 
     public void WriteChipCount()
     {
-        Console.WriteLine($"You have {p.chips} chips.");
+        int numChips = file.GetChipsByID(1);
+        Console.WriteLine($"You have {numChips} chips.");
     }
 
     public void BetChips()
@@ -33,19 +34,21 @@ public class Chip
         betChips = chipInput;
     }
 
-    public void UpdateChips(bool blackjack, bool won)
+    public void UpdateChips(Player player, bool blackjack, bool won)
     {
         if(blackjack)
-            p.chips += (int)Math.Round(betChips*1.5);
+            player.chips += (int)Math.Round(betChips*1.5);
         else if(won)
-            p.chips += betChips;
+            player.chips += betChips;
         else
-            p.chips -= betChips;
+            player.chips -= betChips;
+        file.UpdatePlayer(player);
     }
-    public void UpdateChips(bool blackjack)
+    public void UpdateChips(Player player, bool blackjack)
     {
         if(blackjack)
-            p.chips += (int)Math.Round(betChips*1.5);
+            player.chips += (int)Math.Round(betChips*1.5);
+        file.UpdatePlayer(player);
     }
     /*
     // Cashes out the player and shows them how much they have won (or lost). Quits the game

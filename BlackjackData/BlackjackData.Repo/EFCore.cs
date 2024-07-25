@@ -56,7 +56,7 @@ public class EFCore : IRepository
             savedPlayer.chipsWon = player.chipsWon;
             savedPlayer.chipsLost = player.chipsLost;                    
             context.SaveChanges();
-            Console.WriteLine("Player Updated");
+            //Console.WriteLine("Player Updated");
         }
     }
 

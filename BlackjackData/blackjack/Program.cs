@@ -44,7 +44,7 @@ class Program
             }
         // round loop
         if(round == "y")
-                g.playRound();
+                g.playRound(playerList[0]);
                 
         Console.WriteLine("\nThanks for playing!");
     }   

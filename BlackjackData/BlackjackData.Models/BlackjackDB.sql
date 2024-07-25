@@ -16,6 +16,7 @@ USE Blackjack;
 GO
 
 -- Create the Player table
+/*
 CREATE TABLE Players
 (
     ID INT NOT NULL PRIMARY KEY,
@@ -26,6 +27,7 @@ CREATE TABLE Players
     ChipsWon INT,
     ChipsLost INT
 )
+*/
 
 -- Query Players table
 SELECT *

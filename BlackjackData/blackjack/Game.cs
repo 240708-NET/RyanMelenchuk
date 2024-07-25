@@ -28,7 +28,7 @@ public class Game
 
     public Game(){}
 
-    public void playRound()
+    public void playRound(Player player)
     {
         // Loops (keeps dealing more hands of Blackjack) until the player decides to stop
         while(play == "y")
@@ -48,14 +48,14 @@ public class Game
             // check if the player hit blackjack
             if(playerCount == 21)
             {
-                c.UpdateChips(true);
+                c.UpdateChips(player,true);
                 Console.WriteLine($"\nBlackjack! You won {c.betChips} chips.");
                 blackjack = true;
             }
             // check if the dealer hit blackjack
             else if(dealerCount == 21)
             {
-                c.UpdateChips(false,false);
+                c.UpdateChips(player,false,false);
                 Console.WriteLine("\nDealer Blackjack! Better luck next time...");
             }
             else
@@ -65,7 +65,7 @@ public class Game
                     // ask the player to hit or stand
                     Console.WriteLine("Hit or Stand [H/S]: ");
                     hos = Console.ReadLine().ToLower();
-                    if(hos != "h" && hos != "s")
+                    if(hos != "h" && hos != "s") // do I even need this if statement?
                     {
                         while(hos != "h" && hos != "s")
                         {
@@ -81,14 +81,14 @@ public class Game
                         // check if the player busted
                         if(playerCount > 21)
                         {
-                            c.UpdateChips(false,false);
+                            c.UpdateChips(player,false,false);
                             Console.WriteLine("\nBusted!");
                             bust = true;
                         }
                         else if(playerCount == 21)
                         {
                             blackjack = true;
-                            c.UpdateChips(blackjack);
+                            c.UpdateChips(player,blackjack);
                             Console.WriteLine($"\nBlackjack! You won {c.betChips} chips.");
                             break;
                         }                      
@@ -106,25 +106,25 @@ public class Game
                         //Console.Write(". Current Dealer Count: " + dealerCount);
                         if(dealerCount > 21)
                         {
-                            c.UpdateChips(false,true);
+                            c.UpdateChips(player,false,true);
                             Console.WriteLine($"\nDealer Busted! You won {c.betChips} chips.");
                             dealerBust = true;
                         }
                         else if(dealerCount == 21)
                         {
-                            c.UpdateChips(false,false);
+                            c.UpdateChips(player,false,false);
                             Console.WriteLine("\nDealer Blackjack! Better luck next time...");
                             break;
                         }
                         else if(dealerCount > playerCount)
                         {
-                            c.UpdateChips(false,false);
+                            c.UpdateChips(player,false,false);
                             Console.WriteLine($"\nYou have {playerCount} while the Dealer has {dealerCount}. Close!");
                             break;
                         }
                         else if(dealerCount <= playerCount && dealerCount >= 17)
                         {
-                            c.UpdateChips(false,true);
+                            c.UpdateChips(player,false,true);
                             Console.WriteLine($"\nYou have {playerCount} while the Dealer has {dealerCount}. You won {c.betChips} chips.");
                             break;
                         }
