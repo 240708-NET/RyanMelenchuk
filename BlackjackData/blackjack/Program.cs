@@ -32,7 +32,7 @@ class Program
             file.CreatePlayer(p1); // add player to DB
         }
 
-        c.WriteChipCount(playerList[0]);
+        //c.WriteChipCount(playerList[0]);
 
         Console.WriteLine("Would you like to play a round? [Y/N]: ");
         round = Console.ReadLine().ToLower();
