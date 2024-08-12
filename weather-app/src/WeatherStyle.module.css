@@ -1,0 +1,21 @@
+.page{
+    background-color: rgb(241, 248, 185);
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+.p{
+    display: flex;
+    background-color: rgba(252, 164, 0, 0.988);
+    display: flex;
+    font-size: 14pt;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+
+    border-width: 5px;
+    border-color: red;
+}

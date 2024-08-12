@@ -5,6 +5,7 @@
 
 # Manually specified
 *connectionstring*
+*node_modules*
 
 # dotenv files
 .env
