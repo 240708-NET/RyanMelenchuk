@@ -11,7 +11,6 @@ const Weather = () => {
     try {
       const response = await axios.get(
         `https://freetestapi.com/api/v1/weathers?search=${city}`
-        //`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid={482e4b1dc0b814e09f6d2ae2502de891}`
       );
       if(response.data.length === 0)
         alert('City not found');
